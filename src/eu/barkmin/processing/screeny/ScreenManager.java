@@ -16,28 +16,27 @@ public class ScreenManager {
 
     /**
      * Adds a Screen to the top of the history and calls its start method. The previous Screen, which was at the top of the history, will be stopped.
-     * @param screenyScreen a new Screen
+     * @param screen a new Screen
      */
-    public void start(Screen screenyScreen) {
+    public void start(Screen screen) {
         if (!history.empty()) {
-            Screen currentScreenyScreen = history.peek();
-            currentScreenyScreen.stop();
+            Screen currentScreen = history.peek();
+            currentScreen.stop();
         }
-        this.history.push(screenyScreen);
-        screenyScreen.start();
+        this.history.push(screen);
+        screen.start();
     }
 
     /**
      * Removes the top of the history and calling its destroy method. The restart method of the new top will be called.
      */
     public void back() {
-        if (!history.empty()) {
-            Screen screenyScreen = this.history.pop();
-            screenyScreen.destroy();
-        }
-        if (!history.empty()) {
-            Screen newScreenyScreen = this.history.peek();
-            newScreenyScreen.restart();
+        if (!history.empty() && history.size() > 1) {
+            Screen screen = this.history.pop();
+            screen.destroy();
+
+            Screen newScreen = this.history.peek();
+            newScreen.restart();
         }
     }
 
@@ -46,8 +45,8 @@ public class ScreenManager {
      */
     public void draw() {
         if (!history.empty()) {
-            Screen currentScreenyScreen = history.peek();
-            currentScreenyScreen.draw();
+            Screen currentScreen = history.peek();
+            currentScreen.draw();
         }
     }
 }

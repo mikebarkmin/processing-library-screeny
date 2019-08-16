@@ -40,6 +40,8 @@ public class Button extends InteractiveElement {
         this.backgroundColor = color;
     }
 
+    public void pressed() {}
+
     public void clicked() {}
 
     public void draw() {
@@ -53,6 +55,10 @@ public class Button extends InteractiveElement {
         if (isClicked()) {
             this.clicked();
         }
+        if (isPressed()) {
+            this.pressed();
+        }
+
         new Label(x, y, width, height, label, fontColor, size).draw();
     }
 }
